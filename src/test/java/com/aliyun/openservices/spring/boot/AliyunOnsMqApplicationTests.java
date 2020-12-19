@@ -15,7 +15,7 @@ import com.aliyun.openservices.ons.api.order.OrderProducer;
 public class AliyunOnsMqApplicationTests {
 
 	@Autowired
-	private AliyunOnsMqTemplate onsMqTemplate;
+	private FfmpegTemplate onsMqTemplate;
 	@Autowired
 	private OrderProducer orderProducer;
 	@Autowired
