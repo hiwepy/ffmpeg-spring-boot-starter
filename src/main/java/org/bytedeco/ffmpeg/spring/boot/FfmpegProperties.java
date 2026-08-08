@@ -2,6 +2,17 @@ package org.bytedeco.ffmpeg.spring.boot;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+/**
+ * Configuration properties bound to the {@value #PREFIX} namespace.
+ * <p>
+ * Holds the runtime configuration consumed by {@link FfmpegAutoConfiguration}
+ * and {@link FfmpegTemplate}, including authentication credentials, message
+ * queue endpoints, consumption tuning parameters and MQTT-related options.
+ * </p>
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @ConfigurationProperties(prefix = FfmpegProperties.PREFIX)
 public class FfmpegProperties {
 
@@ -11,161 +22,180 @@ public class FfmpegProperties {
     public static final String PREFIX = "alibaba.cloud.ons";
 
 	/**
-	 * AccessKey, 用于标识、校验用户身份
+	 * AccessKey used to identify and authenticate the user identity.
 	 */
 	private String accessKey;
 	/**
-	 * SecretKey, 用于标识、校验用户身份
+	 * SecretKey used to identify and authenticate the user identity.
 	 */
 	private String secretKey;
 	/**
-	 * 使用STS时，需要配置STS Token, 详情参考https://help.aliyun.com/document_detail/28788.html
+	 * STS token required when using Security Token Service (STS).
+	 * See https://help.aliyun.com/document_detail/28788.html for details.
 	 */
 	private String securityToken;
 	/**
-	 * Group ID，客户端ID
+	 * Group ID, the client identifier.
 	 */
 	private String groupId = "DEFAULT";
 	/**
-	 * 消息发送超时时间，如果服务端在配置的对应时间内未ACK，则发送客户端认为该消息发送失败。
+	 * Message send timeout in milliseconds. If the server does not ACK within the
+	 * configured time, the client treats the send as failed.
 	 */
 	private long sendMsgTimeoutMillis = -1;
 	/**
-	 * 消费模式，包括集群模式、广播模式
+	 * Consumption mode, either clustering or broadcasting.
 	 */
 	private String messageModel = "CLUSTERING";
 	/**
-	 * 消息队列服务接入点
+	 * Message queue service access point (endpoint).
 	 */
 	private String onsAddr;
 	/**
-	 * Name Server地址
+	 * Name Server address used by the client to discover brokers.
 	 */
 	private String nameSrvAddr;
 	/**
-	 * 消费线程数量
+	 * Number of threads used for message consumption.
 	 */
 	private Integer consumeThreadNums;
 	/**
-	 * 设置客户端接入来源，默认ALIYUN
+	 * Client access source channel, defaults to {@code ALIYUN}.
 	 */
 	private String channel = "ALIYUN";
 	/**
-	 * 消息类型，可配置为NOTIFY、METAQ
+	 * Message type, configurable to {@code NOTIFY} or {@code METAQ}.
 	 */
 	private String mqType;
 
 	/**
-	 * 是否启动vip channel
+	 * Whether the VIP channel is enabled.
 	 */
 	private Boolean isVipChannelEnabled = Boolean.FALSE;
 
 	/**
-	 * 顺序消息消费失败进行重试前的等待时间 单位(毫秒)
+	 * Wait time in milliseconds before retrying after an ordered-message
+	 * consumption failure.
 	 */
 	private long suspendTimeMillis = -1;
 
 	/**
-	 * 消息消费失败时的最大重试次数。如果消息消费次数超过，还未成功，则将该消息转移到一个失败队列，等待被删除。
+	 * Maximum retry attempts on message consumption failure. When consumption
+	 * attempts exceed this value without success, the message is moved to a
+	 * failure queue pending deletion.
 	 */
 	private int maxReconsumeTimes = -1;
 
 	/**
-	 * 设置每条消息消费的最大超时时间,超过这个时间,这条消息将会被视为消费失败,等下次重新投递再次消费. 每个业务需要设置一个合理的值.
-	 * 单位(分钟),默认15分钟
+	 * Maximum consumption timeout in minutes per message. When exceeded the
+	 * message is treated as failed and will be redelivered for the next
+	 * consumption attempt. Set a reasonable value for each business case.
+	 * Defaults to 15 minutes.
 	 */
 	private int consumeTimeout = 15;
 	/**
-	 * 设置事务消息的第一次回查延迟时间
+	 * Initial delay before the first transaction-message back-check.
 	 */
 	private long checkImmunityTimeInSeconds;
 
 	/**
-	 * 是否每次请求都带上最新的订阅关系，默认false
+	 * Whether each request carries the latest subscription relationship,
+	 * defaults to {@code false}.
 	 */
 	private Boolean postSubscriptionWhenPull = Boolean.FALSE;
 
 	/**
-	 * BatchConsumer每次批量消费的最大消息数量, 默认值为1, 允许自定义范围为[1, 32], 实际消费数量可能小于该值.
+	 * Maximum number of messages consumed in each batch by a BatchConsumer.
+	 * Defaults to 1; the customizable range is [1, 32], although the actual
+	 * consumed amount may be smaller.
 	 */
 	private int consumeMessageBatchMaxSize = 1;
 
 	/**
-	 * Consumer允许在客户端中缓存的最大消息数量，默认值为5000，设置过大可能会引起客户端OOM，取值范围为[100, 50000]
-	 * 考虑到批量拉取，实际最大缓存量会少量超过限定值
-	 * 该限制在客户端级别生效，限定额会平均分配到订阅的Topic上，比如限制为1000条，订阅2个Topic，每个Topic将限制缓存500条
+	 * Maximum number of messages the consumer may cache locally. Defaults to
+	 * 5000. Too large a value may cause client OOM. Range is [100, 50000].
+	 * Due to batch pulling, the actual cached amount may slightly exceed the
+	 * limit. The limit takes effect at the client level and is evenly split
+	 * across subscribed topics, e.g. a limit of 1000 with 2 topics allows 500
+	 * cached messages per topic.
 	 */
 	private int maxCachedMessageAmount = 5000;
 
 	/**
-	 * Consumer允许在客户端中缓存的最大消息容量，默认值为512 MiB，设置过大可能会引起客户端OOM，取值范围为[16, 2048]
-	 * 考虑到批量拉取，实际最大缓存量会少量超过限定值
-	 * 该限制在客户端级别生效，限定额会平均分配到订阅的Topic上，比如限制为1000MiB，订阅2个Topic，每个Topic将限制缓存500MiB
+	 * Maximum cached message capacity in MiB allowed by the consumer. Defaults
+	 * to 512 MiB. Too large a value may cause client OOM. Range is [16, 2048].
+	 * Due to batch pulling, the actual cached amount may slightly exceed the
+	 * limit. The limit takes effect at the client level and is evenly split
+	 * across subscribed topics, e.g. a limit of 1000 MiB with 2 topics allows
+	 * 500 MiB cached per topic.
 	 */
 	private int maxCachedMessageSizeInMiB = 512;
 
 	/**
-	 * 设置实例ID，充当命名空间的作用
+	 * Instance ID, acting as a namespace.
 	 */
 	private String instanceId;
 
 	/**
-	 * 设置实例名，注意：如果在一个进程中将多个Producer或者是多个Consumer设置相同的InstanceName，底层会共享连接。
+	 * Instance name. Note: when multiple producers or consumers in the same
+	 * process share the same instance name, they share the underlying
+	 * connection.
 	 */
 	private String instanceName = "InstanceName";
 
 	/**
-	 * MQ消息轨迹开关
+	 * Toggle for MQ message tracing.
 	 */
 	private Boolean msgTraceSwitch = Boolean.FALSE;
 	/**
-	 * Mqtt消息序列ID
+	 * Sequence ID of the MQTT message.
 	 */
 	private String mqttMessageId;
 	/**
-	 * Mqtt消息
+	 * MQTT message payload.
 	 */
 	private String mqttMessage;
 
 	/**
-	 * Mqtt消息保留关键字
+	 * MQTT message reserved keyword for retain flag.
 	 */
 	private String mqttPublishRetain = "mqttRetain";
 
 	/**
-	 * Mqtt消息保留关键字
+	 * MQTT message reserved keyword for the dub publish flag.
 	 */
 	private String mqttPublishDubFlag = "mqttPublishDubFlag";
 
 	/**
-	 * Mqtt的二级Topic，是父Topic下的子类
+	 * Secondary MQTT topic, a child of the parent topic.
 	 */
 	private String mqttSecondTopic = "mqttSecondTopic";
 
 	/**
-	 * Mqtt协议使用的每个客户端的唯一标识
+	 * Unique identifier of each client using the MQTT protocol.
 	 */
 	private String mqttClientId = "clientId";
 
 	/**
-	 * Mqtt消息传输的数据可靠性级别
+	 * Quality-of-service (QoS) level for MQTT message delivery reliability.
 	 */
 	private String mqttQOS = "qoslevel";
 
 	/**
-	 * 是否开启mqtransaction，用于使用exactly-once投递语义
+	 * Whether MQ transactions are enabled for exactly-once delivery semantics.
 	 */
 	private Boolean exactlyOnceDelivery = Boolean.FALSE;
 
 	/**
-	 * exactlyonceConsumer record manager 刷新过期记录周期
+	 * Refresh interval for the exactly-once consumer record manager to purge
+	 * expired records.
 	 */
 	private String exactlyOnceRmRefreshInterval = "exactlyOnceRmRefreshInterval";
 
 	/**
-	 * 每次获取最大消息数量
+	 * Maximum number of messages retrieved in a single batch.
 	 */
 	private long maxBatchMessageCount = 1;
- 
+
 
 }
