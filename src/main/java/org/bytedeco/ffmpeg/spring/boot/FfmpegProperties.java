@@ -198,4 +198,334 @@ public class FfmpegProperties {
 	private long maxBatchMessageCount = 1;
 
 
+	/** Return the AccessKey used to authenticate the user. @return the access key */
+	public String getAccessKey() {
+		return accessKey;
+	}
+
+	/** Set the AccessKey used to authenticate the user. @param accessKey the access key */
+	public void setAccessKey(String accessKey) {
+		this.accessKey = accessKey;
+	}
+
+	/** Return the SecretKey used to authenticate the user. @return the secret key */
+	public String getSecretKey() {
+		return secretKey;
+	}
+
+	/** Set the SecretKey used to authenticate the user. @param secretKey the secret key */
+	public void setSecretKey(String secretKey) {
+		this.secretKey = secretKey;
+	}
+
+	/** Return the STS security token. @return the security token */
+	public String getSecurityToken() {
+		return securityToken;
+	}
+
+	/** Set the STS security token. @param securityToken the security token */
+	public void setSecurityToken(String securityToken) {
+		this.securityToken = securityToken;
+	}
+
+	/** Return the group id (client identifier). @return the group id */
+	public String getGroupId() {
+		return groupId;
+	}
+
+	/** Set the group id (client identifier). @param groupId the group id */
+	public void setGroupId(String groupId) {
+		this.groupId = groupId;
+	}
+
+	/** Return the message send timeout in milliseconds. @return the send timeout */
+	public long getSendMsgTimeoutMillis() {
+		return sendMsgTimeoutMillis;
+	}
+
+	/** Set the message send timeout in milliseconds. @param sendMsgTimeoutMillis the send timeout */
+	public void setSendMsgTimeoutMillis(long sendMsgTimeoutMillis) {
+		this.sendMsgTimeoutMillis = sendMsgTimeoutMillis;
+	}
+
+	/** Return the consumption mode (clustering or broadcasting). @return the message model */
+	public String getMessageModel() {
+		return messageModel;
+	}
+
+	/** Set the consumption mode (clustering or broadcasting). @param messageModel the message model */
+	public void setMessageModel(String messageModel) {
+		this.messageModel = messageModel;
+	}
+
+	/** Return the message queue service endpoint. @return the ONS address */
+	public String getOnsAddr() {
+		return onsAddr;
+	}
+
+	/** Set the message queue service endpoint. @param onsAddr the ONS address */
+	public void setOnsAddr(String onsAddr) {
+		this.onsAddr = onsAddr;
+	}
+
+	/** Return the Name Server address. @return the name server address */
+	public String getNameSrvAddr() {
+		return nameSrvAddr;
+	}
+
+	/** Set the Name Server address. @param nameSrvAddr the name server address */
+	public void setNameSrvAddr(String nameSrvAddr) {
+		this.nameSrvAddr = nameSrvAddr;
+	}
+
+	/** Return the number of consumption threads. @return the consume thread count */
+	public Integer getConsumeThreadNums() {
+		return consumeThreadNums;
+	}
+
+	/** Set the number of consumption threads. @param consumeThreadNums the consume thread count */
+	public void setConsumeThreadNums(Integer consumeThreadNums) {
+		this.consumeThreadNums = consumeThreadNums;
+	}
+
+	/** Return the client access source channel. @return the channel */
+	public String getChannel() {
+		return channel;
+	}
+
+	/** Set the client access source channel. @param channel the channel */
+	public void setChannel(String channel) {
+		this.channel = channel;
+	}
+
+	/** Return the message type. @return the MQ type */
+	public String getMqType() {
+		return mqType;
+	}
+
+	/** Set the message type. @param mqType the MQ type */
+	public void setMqType(String mqType) {
+		this.mqType = mqType;
+	}
+
+	/** Return whether the VIP channel is enabled. @return true if the VIP channel is enabled */
+	public Boolean getIsVipChannelEnabled() {
+		return isVipChannelEnabled;
+	}
+
+	/** Set whether the VIP channel is enabled. @param isVipChannelEnabled true to enable */
+	public void setIsVipChannelEnabled(Boolean isVipChannelEnabled) {
+		this.isVipChannelEnabled = isVipChannelEnabled;
+	}
+
+	/** Return the retry suspend time in milliseconds. @return the suspend time */
+	public long getSuspendTimeMillis() {
+		return suspendTimeMillis;
+	}
+
+	/** Set the retry suspend time in milliseconds. @param suspendTimeMillis the suspend time */
+	public void setSuspendTimeMillis(long suspendTimeMillis) {
+		this.suspendTimeMillis = suspendTimeMillis;
+	}
+
+	/** Return the maximum number of reconsume attempts. @return the max reconsume count */
+	public int getMaxReconsumeTimes() {
+		return maxReconsumeTimes;
+	}
+
+	/** Set the maximum number of reconsume attempts. @param maxReconsumeTimes the max reconsume count */
+	public void setMaxReconsumeTimes(int maxReconsumeTimes) {
+		this.maxReconsumeTimes = maxReconsumeTimes;
+	}
+
+	/** Return the consumption timeout in minutes. @return the consume timeout */
+	public int getConsumeTimeout() {
+		return consumeTimeout;
+	}
+
+	/** Set the consumption timeout in minutes. @param consumeTimeout the consume timeout */
+	public void setConsumeTimeout(int consumeTimeout) {
+		this.consumeTimeout = consumeTimeout;
+	}
+
+	/** Return the initial delay before back-checking transaction messages. @return the check immunity time */
+	public long getCheckImmunityTimeInSeconds() {
+		return checkImmunityTimeInSeconds;
+	}
+
+	/** Set the initial delay before back-checking transaction messages. @param checkImmunityTimeInSeconds the check immunity time */
+	public void setCheckImmunityTimeInSeconds(long checkImmunityTimeInSeconds) {
+		this.checkImmunityTimeInSeconds = checkImmunityTimeInSeconds;
+	}
+
+	/** Return whether the latest subscription is posted on each pull. @return true if posted */
+	public Boolean getPostSubscriptionWhenPull() {
+		return postSubscriptionWhenPull;
+	}
+
+	/** Set whether the latest subscription is posted on each pull. @param postSubscriptionWhenPull true to post */
+	public void setPostSubscriptionWhenPull(Boolean postSubscriptionWhenPull) {
+		this.postSubscriptionWhenPull = postSubscriptionWhenPull;
+	}
+
+	/** Return the maximum messages consumed per batch. @return the consume batch max size */
+	public int getConsumeMessageBatchMaxSize() {
+		return consumeMessageBatchMaxSize;
+	}
+
+	/** Set the maximum messages consumed per batch. @param consumeMessageBatchMaxSize the consume batch max size */
+	public void setConsumeMessageBatchMaxSize(int consumeMessageBatchMaxSize) {
+		this.consumeMessageBatchMaxSize = consumeMessageBatchMaxSize;
+	}
+
+	/** Return the maximum number of cached messages. @return the max cached message amount */
+	public int getMaxCachedMessageAmount() {
+		return maxCachedMessageAmount;
+	}
+
+	/** Set the maximum number of cached messages. @param maxCachedMessageAmount the max cached message amount */
+	public void setMaxCachedMessageAmount(int maxCachedMessageAmount) {
+		this.maxCachedMessageAmount = maxCachedMessageAmount;
+	}
+
+	/** Return the maximum cached message size in MiB. @return the max cached message size */
+	public int getMaxCachedMessageSizeInMiB() {
+		return maxCachedMessageSizeInMiB;
+	}
+
+	/** Set the maximum cached message size in MiB. @param maxCachedMessageSizeInMiB the max cached message size */
+	public void setMaxCachedMessageSizeInMiB(int maxCachedMessageSizeInMiB) {
+		this.maxCachedMessageSizeInMiB = maxCachedMessageSizeInMiB;
+	}
+
+	/** Return the instance id (namespace). @return the instance id */
+	public String getInstanceId() {
+		return instanceId;
+	}
+
+	/** Set the instance id (namespace). @param instanceId the instance id */
+	public void setInstanceId(String instanceId) {
+		this.instanceId = instanceId;
+	}
+
+	/** Return the instance name. @return the instance name */
+	public String getInstanceName() {
+		return instanceName;
+	}
+
+	/** Set the instance name. @param instanceName the instance name */
+	public void setInstanceName(String instanceName) {
+		this.instanceName = instanceName;
+	}
+
+	/** Return whether MQ message tracing is enabled. @return true if enabled */
+	public Boolean getMsgTraceSwitch() {
+		return msgTraceSwitch;
+	}
+
+	/** Set whether MQ message tracing is enabled. @param msgTraceSwitch true to enable */
+	public void setMsgTraceSwitch(Boolean msgTraceSwitch) {
+		this.msgTraceSwitch = msgTraceSwitch;
+	}
+
+	/** Return the MQTT message id. @return the MQTT message id */
+	public String getMqttMessageId() {
+		return mqttMessageId;
+	}
+
+	/** Set the MQTT message id. @param mqttMessageId the MQTT message id */
+	public void setMqttMessageId(String mqttMessageId) {
+		this.mqttMessageId = mqttMessageId;
+	}
+
+	/** Return the MQTT message payload. @return the MQTT message */
+	public String getMqttMessage() {
+		return mqttMessage;
+	}
+
+	/** Set the MQTT message payload. @param mqttMessage the MQTT message */
+	public void setMqttMessage(String mqttMessage) {
+		this.mqttMessage = mqttMessage;
+	}
+
+	/** Return the MQTT publish retain keyword. @return the retain keyword */
+	public String getMqttPublishRetain() {
+		return mqttPublishRetain;
+	}
+
+	/** Set the MQTT publish retain keyword. @param mqttPublishRetain the retain keyword */
+	public void setMqttPublishRetain(String mqttPublishRetain) {
+		this.mqttPublishRetain = mqttPublishRetain;
+	}
+
+	/** Return the MQTT publish dub flag keyword. @return the dub flag keyword */
+	public String getMqttPublishDubFlag() {
+		return mqttPublishDubFlag;
+	}
+
+	/** Set the MQTT publish dub flag keyword. @param mqttPublishDubFlag the dub flag keyword */
+	public void setMqttPublishDubFlag(String mqttPublishDubFlag) {
+		this.mqttPublishDubFlag = mqttPublishDubFlag;
+	}
+
+	/** Return the secondary MQTT topic. @return the secondary topic */
+	public String getMqttSecondTopic() {
+		return mqttSecondTopic;
+	}
+
+	/** Set the secondary MQTT topic. @param mqttSecondTopic the secondary topic */
+	public void setMqttSecondTopic(String mqttSecondTopic) {
+		this.mqttSecondTopic = mqttSecondTopic;
+	}
+
+	/** Return the MQTT client id. @return the MQTT client id */
+	public String getMqttClientId() {
+		return mqttClientId;
+	}
+
+	/** Set the MQTT client id. @param mqttClientId the MQTT client id */
+	public void setMqttClientId(String mqttClientId) {
+		this.mqttClientId = mqttClientId;
+	}
+
+	/** Return the MQTT QoS level. @return the QoS level */
+	public String getMqttQOS() {
+		return mqttQOS;
+	}
+
+	/** Set the MQTT QoS level. @param mqttQOS the QoS level */
+	public void setMqttQOS(String mqttQOS) {
+		this.mqttQOS = mqttQOS;
+	}
+
+	/** Return whether exactly-once delivery is enabled. @return true if enabled */
+	public Boolean getExactlyOnceDelivery() {
+		return exactlyOnceDelivery;
+	}
+
+	/** Set whether exactly-once delivery is enabled. @param exactlyOnceDelivery true to enable */
+	public void setExactlyOnceDelivery(Boolean exactlyOnceDelivery) {
+		this.exactlyOnceDelivery = exactlyOnceDelivery;
+	}
+
+	/** Return the refresh interval for the exactly-once record manager. @return the refresh interval */
+	public String getExactlyOnceRmRefreshInterval() {
+		return exactlyOnceRmRefreshInterval;
+	}
+
+	/** Set the refresh interval for the exactly-once record manager. @param exactlyOnceRmRefreshInterval the refresh interval */
+	public void setExactlyOnceRmRefreshInterval(String exactlyOnceRmRefreshInterval) {
+		this.exactlyOnceRmRefreshInterval = exactlyOnceRmRefreshInterval;
+	}
+
+	/** Return the maximum number of messages retrieved in a single batch. @return the max batch message count */
+	public long getMaxBatchMessageCount() {
+		return maxBatchMessageCount;
+	}
+
+	/** Set the maximum number of messages retrieved in a single batch. @param maxBatchMessageCount the max batch message count */
+	public void setMaxBatchMessageCount(long maxBatchMessageCount) {
+		this.maxBatchMessageCount = maxBatchMessageCount;
+	}
+
 }

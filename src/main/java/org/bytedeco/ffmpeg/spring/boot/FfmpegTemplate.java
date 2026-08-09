@@ -1,6 +1,7 @@
 package org.bytedeco.ffmpeg.spring.boot;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Helper component that exposes JavaCV / FFmpeg operations to application code.
@@ -12,9 +13,14 @@ import lombok.extern.slf4j.Slf4j;
  * @author [@Loong Wan](https://github.com/loong10k)
  * @since 1.0.0
  */
-@Slf4j
 public class FfmpegTemplate {
 
-	
-  
+	/** Shared logger for FFmpeg operations, exposed for subclasses and collaborators. */
+	protected final Logger log = LoggerFactory.getLogger(getClass());
+
+	/** Default no-arg constructor used by {@link FfmpegAutoConfiguration} to create the bean. */
+	public FfmpegTemplate() {
+		log.debug("Initializing FfmpegTemplate");
+	}
+
 }
