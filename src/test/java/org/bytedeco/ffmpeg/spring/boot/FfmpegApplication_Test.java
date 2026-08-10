@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * directly, avoiding a full Spring context so the suite does not depend on the
  * FFmpeg native bindings being loadable in the test JVM.</p>
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @DisplayName("FFmpeg Starter Tests")
