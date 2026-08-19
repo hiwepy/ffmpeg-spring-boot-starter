@@ -21,6 +21,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConditionalOnClass({ ffmpeg.class })
 @EnableConfigurationProperties(FfmpegProperties.class)
+/**
+ * <p>Auto-configuration for FfmpegAutoConfiguration.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class FfmpegAutoConfiguration {
 
 	/**
@@ -30,6 +35,10 @@ public class FfmpegAutoConfiguration {
 	 * @return a new {@link FfmpegTemplate} instance registered as a Spring bean
 	 */
 	@Bean
+	/**
+	 * <p>Aliyun ons mq template.</p>
+	 * @return the result
+	 */
 	public FfmpegTemplate aliyunOnsMqTemplate() {
 		return new FfmpegTemplate();
 	}
